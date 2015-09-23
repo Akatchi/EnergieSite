@@ -11,6 +11,7 @@ import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.mvc.Action
 import play.api.mvc.Controller
 import models.Dog
+import slick.lifted.TableQuery
 
 class Application @Inject() (catDao: CatDAO, dogDao: DogDAO) extends Controller {
 
