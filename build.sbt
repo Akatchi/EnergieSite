@@ -9,12 +9,12 @@ scalaVersion := "2.11.6"
 libraryDependencies ++= Seq(
   cache,
   ws,
-  evolutions,
   specs2 % Test,
   "com.typesafe.play" %% "play-slick" % "1.0.1",
   "com.typesafe.play" %% "play-slick-evolutions" % "1.0.1",
   "mysql" % "mysql-connector-java" % "5.1.34",
-  "com.h2database" % "h2" % "1.3.148"
+  "com.typesafe.slick" %% "slick-codegen" % "3.0.0-RC3",
+  "com.typesafe.play" %% "anorm" % "2.4.0"
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
