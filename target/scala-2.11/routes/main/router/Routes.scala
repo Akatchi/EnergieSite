@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/home/akatchi/Dropbox/Libraries/Playframework/activator-dist-1.3.6/energie_site/conf/routes
-// @DATE:Wed Sep 23 20:05:12 CEST 2015
+// @DATE:Wed Sep 23 20:34:29 CEST 2015
 
 package router
 
@@ -17,7 +17,7 @@ class Routes(
   override val errorHandler: play.api.http.HttpErrorHandler, 
   // @LINE:6
   Application_1: controllers.Application,
-  // @LINE:9
+  // @LINE:14
   Assets_0: controllers.Assets,
   val prefix: String
 ) extends GeneratedRouter {
@@ -26,7 +26,7 @@ class Routes(
    def this(errorHandler: play.api.http.HttpErrorHandler,
     // @LINE:6
     Application_1: controllers.Application,
-    // @LINE:9
+    // @LINE:14
     Assets_0: controllers.Assets
   ) = this(errorHandler, Application_1, Assets_0, "/")
 
@@ -43,7 +43,9 @@ class Routes(
 
   def documentation = List(
     ("""GET""", this.prefix, """controllers.Application.index"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/$file<.+>""", """controllers.Assets.versioned(path:String = "/public", file:Asset)"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """insert/cat""", """controllers.Application.insertCat"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """insert/dog""", """controllers.Application.insertDog"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/$file<.+>""", """controllers.Assets.at(path:String = "/public", file:String)"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
     case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
@@ -69,16 +71,50 @@ class Routes(
   )
 
   // @LINE:9
-  private[this] lazy val controllers_Assets_versioned1_route = Route("GET",
+  private[this] lazy val controllers_Application_insertCat1_route = Route("POST",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("insert/cat")))
+  )
+  private[this] lazy val controllers_Application_insertCat1_invoker = createInvoker(
+    Application_1.insertCat,
+    HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.Application",
+      "insertCat",
+      Nil,
+      "POST",
+      """ Home page""",
+      this.prefix + """insert/cat"""
+    )
+  )
+
+  // @LINE:10
+  private[this] lazy val controllers_Application_insertDog2_route = Route("POST",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("insert/dog")))
+  )
+  private[this] lazy val controllers_Application_insertDog2_invoker = createInvoker(
+    Application_1.insertDog,
+    HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.Application",
+      "insertDog",
+      Nil,
+      "POST",
+      """""",
+      this.prefix + """insert/dog"""
+    )
+  )
+
+  // @LINE:14
+  private[this] lazy val controllers_Assets_at3_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("assets/"), DynamicPart("file", """.+""",false)))
   )
-  private[this] lazy val controllers_Assets_versioned1_invoker = createInvoker(
-    Assets_0.versioned(fakeValue[String], fakeValue[Asset]),
+  private[this] lazy val controllers_Assets_at3_invoker = createInvoker(
+    Assets_0.at(fakeValue[String], fakeValue[String]),
     HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.Assets",
-      "versioned",
-      Seq(classOf[String], classOf[Asset]),
+      "at",
+      Seq(classOf[String], classOf[String]),
       "GET",
       """ Map static resources from the /public folder to the /assets URL path""",
       this.prefix + """assets/$file<.+>"""
@@ -95,9 +131,21 @@ class Routes(
       }
   
     // @LINE:9
-    case controllers_Assets_versioned1_route(params) =>
-      call(Param[String]("path", Right("/public")), params.fromPath[Asset]("file", None)) { (path, file) =>
-        controllers_Assets_versioned1_invoker.call(Assets_0.versioned(path, file))
+    case controllers_Application_insertCat1_route(params) =>
+      call { 
+        controllers_Application_insertCat1_invoker.call(Application_1.insertCat)
+      }
+  
+    // @LINE:10
+    case controllers_Application_insertDog2_route(params) =>
+      call { 
+        controllers_Application_insertDog2_invoker.call(Application_1.insertDog)
+      }
+  
+    // @LINE:14
+    case controllers_Assets_at3_route(params) =>
+      call(Param[String]("path", Right("/public")), params.fromPath[String]("file", None)) { (path, file) =>
+        controllers_Assets_at3_invoker.call(Assets_0.at(path, file))
       }
   }
 }
