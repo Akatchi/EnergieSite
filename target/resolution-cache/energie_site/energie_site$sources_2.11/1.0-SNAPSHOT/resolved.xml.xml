@@ -4,7 +4,7 @@
 		module="energie_site$sources_2.11"
 		revision="1.0-SNAPSHOT"
 		status="integration"
-		publication="20150923194236"
+		publication="20150929111021"
 	/>
 	<configurations>
 		<conf name="default" visibility="public" description=""/>

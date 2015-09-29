@@ -31,11 +31,13 @@ Seq[Any](format.raw/*1.32*/("""
         <title>"""),_display_(/*7.17*/title),format.raw/*7.22*/("""</title>
         <link rel="stylesheet" media="screen" href=""""),_display_(/*8.54*/routes/*8.60*/.Assets.at("stylesheets/main.css")),format.raw/*8.94*/("""">
         <link rel="shortcut icon" type="image/png" href=""""),_display_(/*9.59*/routes/*9.65*/.Assets.at("images/favicon.png")),format.raw/*9.97*/("""">
-        <script src=""""),_display_(/*10.23*/routes/*10.29*/.Assets.at("javascripts/jquery-1.9.0.min.js")),format.raw/*10.74*/("""" type="text/javascript"></script>
+        <link rel="stylesheet" href=""""),_display_(/*10.39*/routes/*10.45*/.Assets.at("lib/bootstrap/css/bootstrap.min.css")),format.raw/*10.94*/("""" type="text/javascript">
     </head>
-    <body>
+    <body class="container">
         """),_display_(/*13.10*/content),format.raw/*13.17*/("""
     """),format.raw/*14.5*/("""</body>
+        <script src=""""),_display_(/*15.23*/routes/*15.29*/.Assets.at("lib/jquery/jquery.min.js")),format.raw/*15.67*/("""" type="text/javascript"></script>
+        <script src=""""),_display_(/*16.23*/routes/*16.29*/.Assets.at("lib/bootstrap/js/bootstrap.min.js")),format.raw/*16.76*/("""" type="text/javascript"></script>
 </html>
 """))
       }
@@ -57,11 +59,11 @@ Seq[Any](format.raw/*1.32*/("""
 object main extends main_Scope0.main
               /*
                   -- GENERATED --
-                  DATE: Wed Sep 23 20:34:29 CEST 2015
-                  SOURCE: /home/akatchi/Dropbox/Libraries/Playframework/activator-dist-1.3.6/energie_site/app/views/main.scala.html
-                  HASH: 3f8c08eaaffee7e90d5b8439bc98eb8a34a0f1cf
-                  MATRIX: 530->1|655->31|683->33|760->84|785->89|873->151|887->157|941->191|1028->252|1042->258|1094->290|1146->315|1161->321|1227->366|1321->433|1349->440|1381->445
-                  LINES: 20->1|25->1|27->3|31->7|31->7|32->8|32->8|32->8|33->9|33->9|33->9|34->10|34->10|34->10|37->13|37->13|38->14
+                  DATE: Mon Sep 28 13:34:24 CEST 2015
+                  SOURCE: /Users/wahidnory/Development/School/EnergieSite/EnergieSite/app/views/main.scala.html
+                  HASH: ae14dc7da0d6ce8b2b363eba2c868af7d08b0afe
+                  MATRIX: 530->1|655->31|683->33|760->84|785->89|873->151|887->157|941->191|1028->252|1042->258|1094->290|1162->331|1177->337|1247->386|1350->462|1378->469|1410->474|1467->504|1482->510|1541->548|1625->605|1640->611|1708->658
+                  LINES: 20->1|25->1|27->3|31->7|31->7|32->8|32->8|32->8|33->9|33->9|33->9|34->10|34->10|34->10|37->13|37->13|38->14|39->15|39->15|39->15|40->16|40->16|40->16
                   -- GENERATED --
               */
           

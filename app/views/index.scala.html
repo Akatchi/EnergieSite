@@ -1,39 +1,33 @@
-@(cats: Seq[Cat], dogs: Seq[Dog])
+@(gebruikers: Seq[Gebruiker], huishoudens: Seq[Huishouden])
 
-@main("Cat & Dog database") {
+@main("Registreer voor je huishouden") {
 <div>
-  <div id="cats">
-    <h2>Insert a kitty cat here:</h2>
-
-    <form action="/insert/cat" method="POST">
-      <input name="name" type="text" placeholder="name your feline friend"/>
-      <input name="color" type="text" placeholder="enter the color of this kitty cat"/>
-      <input type="submit"/>
-    </form>
-
-    <h2>Previously inserted cats:</h2>
+  <div>
+    <h2>Huishoudens</h2>
     <table>
-      <tr><th>Name</th><th>Color</th></tr>
-      @for(c <- cats){ 
-      <tr><td>@c.name</td><td>@c.color</td></tr>
+      <tr><th>Huishouden</th><th>Huisnummer</th><th>Grootte</th></tr>
+      @for(huishouden <- huishoudens){
+        <tr><td>@huishouden.postcode</td><td>@huishouden.huisnummer</td><td>@huishouden.grootte</td></tr>
       }
     </table>
   </div>
 
-  <div id="dogs">
-    <h2>Insert a kitty dog here:</h2>
+  <div>
+    <h2>Registreer</h2>
 
-    <form action="/insert/dog" method="POST">
-      <input name="name" type="text" placeholder="name your canine friend"/>
-      <input name="color" type="text" placeholder="enter the color of this kitty dog"/>
+    <form action="/registreer/gebruiker" method="POST">
+      <input name="voornaam" type="text" placeholder="Voornaam"/>
+      <input name="achternaam" type="text" placeholder="Achternaam"/>
+      <input name="email" type="email" placeholder="E-mail"/>
+      <input name="telefoonnummer" type="text" placeholder="Telefoonnummer"/>
       <input type="submit"/>
     </form>
 
-    <h2>Previously inserted dogs:</h2>
+    <h2>Gebruikers aanwezig</h2>
     <table>
-      <tr><th>Name</th><th>Color</th></tr>
-      @for(d <- dogs){ 
-      <tr><td>@d.name</td><td>@d.color</td></tr>
+      <tr><th>Naam</th><th>E-mail</th><th>Telefoonnummer</th></tr>
+      @for(gebruiker <- gebruikers){
+        <tr><td>@gebruiker.voornaam @gebruiker.achternaam</td><td>@gebruiker.email</td><td>@gebruiker.telefoonnummer</td></tr>
       }
     </table>
   </div>

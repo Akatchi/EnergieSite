@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
-// @SOURCE:/home/akatchi/Dropbox/Libraries/Playframework/activator-dist-1.3.6/energie_site/conf/routes
-// @DATE:Wed Sep 23 20:34:29 CEST 2015
+// @SOURCE:/Users/wahidnory/Development/School/EnergieSite/EnergieSite/conf/routes
+// @DATE:Tue Sep 29 08:26:45 CEST 2015
 
 import play.api.routing.JavaScriptReverseRoute
 import play.api.mvc.{ QueryStringBindable, PathBindable, Call, JavascriptLiteral }
@@ -14,47 +14,17 @@ import _root_.controllers.Assets.Asset
 package controllers.javascript {
   import ReverseRouteContext.empty
 
-  // @LINE:14
-  class ReverseAssets(_prefix: => String) {
-
-    def _defaultPrefix: String = {
-      if (_prefix.endsWith("/")) "" else "/"
-    }
-
-  
-    // @LINE:14
-    def at: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.Assets.at",
-      """
-        function(file) {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "assets/" + (""" + implicitly[PathBindable[String]].javascriptUnbind + """)("file", file)})
-        }
-      """
-    )
-  
-  }
-
   // @LINE:6
-  class ReverseApplication(_prefix: => String) {
+  class ReverseRegister(_prefix: => String) {
 
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
-  
-    // @LINE:10
-    def insertDog: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.Application.insertDog",
-      """
-        function() {
-          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "insert/dog"})
-        }
-      """
-    )
   
     // @LINE:6
     def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.Application.index",
+      "controllers.Register.index",
       """
         function() {
           return _wA({method:"GET", url:"""" + _prefix + """"})
@@ -62,12 +32,62 @@ package controllers.javascript {
       """
     )
   
+  }
+
+  // @LINE:9
+  class ReverseLogin(_prefix: => String) {
+
+    def _defaultPrefix: String = {
+      if (_prefix.endsWith("/")) "" else "/"
+    }
+
+  
     // @LINE:9
-    def insertCat: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.Application.insertCat",
+    def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.Login.index",
       """
         function() {
-          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "insert/cat"})
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "login"})
+        }
+      """
+    )
+  
+    // @LINE:15
+    def test: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.Login.test",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "test"})
+        }
+      """
+    )
+  
+    // @LINE:10
+    def login: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.Login.login",
+      """
+        function() {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "login"})
+        }
+      """
+    )
+  
+  }
+
+  // @LINE:18
+  class ReverseAssets(_prefix: => String) {
+
+    def _defaultPrefix: String = {
+      if (_prefix.endsWith("/")) "" else "/"
+    }
+
+  
+    // @LINE:18
+    def at: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.Assets.at",
+      """
+        function(file) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "assets/" + (""" + implicitly[PathBindable[String]].javascriptUnbind + """)("file", file)})
         }
       """
     )

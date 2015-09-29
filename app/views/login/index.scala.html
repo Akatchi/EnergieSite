@@ -1,0 +1,25 @@
+@(form: Form[(String, String)])(implicit flash: Flash)
+
+@main("Login"){
+    @helper.form(routes.Login.login, 'class -> "form-signin col-md-3 col-md-offset-4") {
+        @if(form.hasGlobalErrors){
+            @for(error <- form.globalErrors) {
+                <div class="has-error">
+                    @error.message
+                </div>
+            }
+        }
+        @flash.get("success").map { message =>
+            <p class="has-success">
+                @message
+            </p>
+        }
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" name="email" class="form-control" placeholder="Email address" value="@form("form.email").value" autofocus="" required="false">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="password" class="form-control" placeholder="Password" required="false">
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    }
+}

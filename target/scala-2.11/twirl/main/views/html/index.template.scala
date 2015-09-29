@@ -14,63 +14,57 @@ import play.api.templates.PlayMagic._
 import play.api.mvc._
 import play.api.data._
 
-class index extends BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with play.twirl.api.Template2[Seq[Cat],Seq[Dog],play.twirl.api.HtmlFormat.Appendable] {
+class index extends BaseScalaTemplate[play.twirl.api.HtmlFormat.Appendable,Format[play.twirl.api.HtmlFormat.Appendable]](play.twirl.api.HtmlFormat) with play.twirl.api.Template2[Seq[Gebruiker],Seq[Huishouden],play.twirl.api.HtmlFormat.Appendable] {
 
   /**/
-  def apply/*1.2*/(cats: Seq[Cat], dogs: Seq[Dog]):play.twirl.api.HtmlFormat.Appendable = {
+  def apply/*1.2*/(gebruikers: Seq[Gebruiker], huishoudens: Seq[Huishouden]):play.twirl.api.HtmlFormat.Appendable = {
     _display_ {
       {
 
 
-Seq[Any](format.raw/*1.34*/("""
+Seq[Any](format.raw/*1.60*/("""
 
-"""),_display_(/*3.2*/main("Cat & Dog database")/*3.28*/ {_display_(Seq[Any](format.raw/*3.30*/("""
+"""),_display_(/*3.2*/main("Registreer voor je huishouden")/*3.39*/ {_display_(Seq[Any](format.raw/*3.41*/("""
 """),format.raw/*4.1*/("""<div>
-  <div id="cats">
-    <h2>Insert a kitty cat here:</h2>
-
-    <form action="/insert/cat" method="POST">
-      <input name="name" type="text" placeholder="name your feline friend"/>
-      <input name="color" type="text" placeholder="enter the color of this kitty cat"/>
-      <input type="submit"/>
-    </form>
-
-    <h2>Previously inserted cats:</h2>
+  <div>
+    <h2>Huishoudens</h2>
     <table>
-      <tr><th>Name</th><th>Color</th></tr>
-      """),_display_(/*17.8*/for(c <- cats) yield /*17.22*/{_display_(Seq[Any](format.raw/*17.23*/(""" 
-      """),format.raw/*18.7*/("""<tr><td>"""),_display_(/*18.16*/c/*18.17*/.name),format.raw/*18.22*/("""</td><td>"""),_display_(/*18.32*/c/*18.33*/.color),format.raw/*18.39*/("""</td></tr>
-      """)))}),format.raw/*19.8*/("""
-    """),format.raw/*20.5*/("""</table>
+      <tr><th>Huishouden</th><th>Huisnummer</th><th>Grootte</th></tr>
+      """),_display_(/*9.8*/for(huishouden <- huishoudens) yield /*9.38*/{_display_(Seq[Any](format.raw/*9.39*/("""
+        """),format.raw/*10.9*/("""<tr><td>"""),_display_(/*10.18*/huishouden/*10.28*/.postcode),format.raw/*10.37*/("""</td><td>"""),_display_(/*10.47*/huishouden/*10.57*/.huisnummer),format.raw/*10.68*/("""</td><td>"""),_display_(/*10.78*/huishouden/*10.88*/.grootte),format.raw/*10.96*/("""</td></tr>
+      """)))}),format.raw/*11.8*/("""
+    """),format.raw/*12.5*/("""</table>
   </div>
 
-  <div id="dogs">
-    <h2>Insert a kitty dog here:</h2>
+  <div>
+    <h2>Registreer</h2>
 
-    <form action="/insert/dog" method="POST">
-      <input name="name" type="text" placeholder="name your canine friend"/>
-      <input name="color" type="text" placeholder="enter the color of this kitty dog"/>
+    <form action="/registreer/gebruiker" method="POST">
+      <input name="voornaam" type="text" placeholder="Voornaam"/>
+      <input name="achternaam" type="text" placeholder="Achternaam"/>
+      <input name="email" type="email" placeholder="E-mail"/>
+      <input name="telefoonnummer" type="text" placeholder="Telefoonnummer"/>
       <input type="submit"/>
     </form>
 
-    <h2>Previously inserted dogs:</h2>
+    <h2>Gebruikers aanwezig</h2>
     <table>
-      <tr><th>Name</th><th>Color</th></tr>
-      """),_display_(/*35.8*/for(d <- dogs) yield /*35.22*/{_display_(Seq[Any](format.raw/*35.23*/(""" 
-      """),format.raw/*36.7*/("""<tr><td>"""),_display_(/*36.16*/d/*36.17*/.name),format.raw/*36.22*/("""</td><td>"""),_display_(/*36.32*/d/*36.33*/.color),format.raw/*36.39*/("""</td></tr>
-      """)))}),format.raw/*37.8*/("""
-    """),format.raw/*38.5*/("""</table>
+      <tr><th>Naam</th><th>E-mail</th><th>Telefoonnummer</th></tr>
+      """),_display_(/*29.8*/for(gebruiker <- gebruikers) yield /*29.36*/{_display_(Seq[Any](format.raw/*29.37*/("""
+        """),format.raw/*30.9*/("""<tr><td>"""),_display_(/*30.18*/gebruiker/*30.27*/.voornaam),format.raw/*30.36*/(""" """),_display_(/*30.38*/gebruiker/*30.47*/.achternaam),format.raw/*30.58*/("""</td><td>"""),_display_(/*30.68*/gebruiker/*30.77*/.email),format.raw/*30.83*/("""</td><td>"""),_display_(/*30.93*/gebruiker/*30.102*/.telefoonnummer),format.raw/*30.117*/("""</td></tr>
+      """)))}),format.raw/*31.8*/("""
+    """),format.raw/*32.5*/("""</table>
   </div>
 </div>
-""")))}),format.raw/*41.2*/("""
+""")))}),format.raw/*35.2*/("""
 """))
       }
     }
   }
 
-  def render(cats:Seq[Cat],dogs:Seq[Dog]): play.twirl.api.HtmlFormat.Appendable = apply(cats,dogs)
+  def render(gebruikers:Seq[Gebruiker],huishoudens:Seq[Huishouden]): play.twirl.api.HtmlFormat.Appendable = apply(gebruikers,huishoudens)
 
-  def f:((Seq[Cat],Seq[Dog]) => play.twirl.api.HtmlFormat.Appendable) = (cats,dogs) => apply(cats,dogs)
+  def f:((Seq[Gebruiker],Seq[Huishouden]) => play.twirl.api.HtmlFormat.Appendable) = (gebruikers,huishoudens) => apply(gebruikers,huishoudens)
 
   def ref: this.type = this
 
@@ -83,11 +77,11 @@ Seq[Any](format.raw/*1.34*/("""
 object index extends index_Scope0.index
               /*
                   -- GENERATED --
-                  DATE: Wed Sep 23 20:34:29 CEST 2015
-                  SOURCE: /home/akatchi/Dropbox/Libraries/Playframework/activator-dist-1.3.6/energie_site/app/views/index.scala.html
-                  HASH: 899d806918211559d2c49afe3cbe482896b45022
-                  MATRIX: 538->1|665->33|693->36|727->62|766->64|793->65|1236->482|1266->496|1305->497|1340->505|1376->514|1386->515|1412->520|1449->530|1459->531|1486->537|1534->555|1566->560|2022->990|2052->1004|2091->1005|2126->1013|2162->1022|2172->1023|2198->1028|2235->1038|2245->1039|2272->1045|2320->1063|2352->1068|2408->1094
-                  LINES: 20->1|25->1|27->3|27->3|27->3|28->4|41->17|41->17|41->17|42->18|42->18|42->18|42->18|42->18|42->18|42->18|43->19|44->20|59->35|59->35|59->35|60->36|60->36|60->36|60->36|60->36|60->36|60->36|61->37|62->38|65->41
+                  DATE: Sun Sep 27 18:56:39 CEST 2015
+                  SOURCE: /Users/wahidnory/Development/School/EnergieSite/EnergieSite/app/views/index.scala.html
+                  HASH: 949a314a363288f60c67005ac5124a2ae1994562
+                  MATRIX: 551->1|704->59|732->62|777->99|816->101|843->102|996->230|1041->260|1079->261|1115->270|1151->279|1170->289|1200->298|1237->308|1256->318|1288->329|1325->339|1344->349|1373->357|1421->375|1453->380|2024->925|2068->953|2107->954|2143->963|2179->972|2197->981|2227->990|2256->992|2274->1001|2306->1012|2343->1022|2361->1031|2388->1037|2425->1047|2444->1056|2481->1071|2529->1089|2561->1094|2617->1120
+                  LINES: 20->1|25->1|27->3|27->3|27->3|28->4|33->9|33->9|33->9|34->10|34->10|34->10|34->10|34->10|34->10|34->10|34->10|34->10|34->10|35->11|36->12|53->29|53->29|53->29|54->30|54->30|54->30|54->30|54->30|54->30|54->30|54->30|54->30|54->30|54->30|54->30|54->30|55->31|56->32|59->35
                   -- GENERATED --
               */
           
